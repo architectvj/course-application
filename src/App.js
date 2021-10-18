@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { Col, Container, Row } from 'reactstrap';
+import AddCourse from './course/AddCourse';
+import Allcourses from './course/Allcourses';
+import Course from './course/Course';
+import Header from './header/Header';
+import Home from './home/Home';
+import Menus from './menus/Menus';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <ToastContainer />
+        <Container>
+          <Header />
+          <Row>
+           <Col md={4}>
+              <Menus /> 
+            </Col>
+           <Col md={8}>
+             <Route path="/" component={Home} exact></Route> 
+             <Route path="/add-course" component={AddCourse} exact></Route>
+             <Route path="/view-course" component={Allcourses} exact></Route>
+           </Col>
+         </Row>
+       </Container>
+
+      </Router>
     </div>
   );
 }
